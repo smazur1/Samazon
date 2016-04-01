@@ -100,13 +100,41 @@ public class samazonservlet extends HttpServlet {
 
 			request.getRequestDispatcher("/ShoppingCart.jsp").forward(request, response);
 
-		} else if (request.getParameter("option").equals("5")) {
+		}  else if (request.getParameter("option").equals("5")) {
+			
 			double total = 0;
 			for (Product product : cart) {
 				total += product.getPrice().doubleValue();
 			}
 			session.setAttribute("total", total);
+			
+					
 			request.getRequestDispatcher("/Confirmation.jsp").forward(request, response);
+
+		}  else if (request.getParameter("option").equals("6")) {
+			
+			String username = request.getParameter("username");
+			String password = request.getParameter("password");
+            long count = 0;
+            String joe = "0";
+            
+            count = ProcessUser.getUser(username, password);
+			
+			if (count == 1) {
+			
+			  joe = "1";
+			  session.setAttribute("joe", joe);
+			  request.getRequestDispatcher("/ShoppingCart.jsp").forward(request, response);
+			} else {
+			
+				session.setAttribute("joe", joe);
+			request.getRequestDispatcher("/login.jsp").forward(request, response); 
+			}
+
+		} else if (request.getParameter("option").equals("7")) {
+			
+			
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		}
 	}

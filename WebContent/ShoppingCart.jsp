@@ -52,6 +52,16 @@ th {
 			 <input type="submit" value="Go Back To List!">
 		</p>
 	</form>
+
+<c:out value="${joe }"/>
+
+	
+<c:choose>
+    <c:when test="${joe.equals('1')}">
+    <style>body{ background-color: yellow; }</style>
+   
+  
+    
 	<form action="samazonservlet" method="post">
 		<p>
 			<br />
@@ -60,3 +70,26 @@ th {
 			 <input type="submit" value="Check out">
 		</p>
 	</form>
+    
+  </c:when>   
+    
+
+    <c:otherwise>
+    
+    <form action="samazonservlet" method="post">
+		<p>
+			<br />
+		<h3>Login to Place Order</h3>
+		<br /> <input type="hidden" name="option" value="7"> 
+			 <input type="submit" value="Login">
+		</p>
+	</form>
+    
+    </c:otherwise>
+</c:choose>	
+	
+	
+	
+	
+	
+	
