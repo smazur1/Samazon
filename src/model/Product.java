@@ -24,9 +24,9 @@ public class Product implements Serializable {
 
 	private String instock;
 
-	private BigDecimal price;
+	private double price;
 
-	private BigDecimal productcode;
+	private long productcode;
 
 	private String productname;
 
@@ -65,19 +65,19 @@ public class Product implements Serializable {
 		this.instock = instock;
 	}
 
-	public BigDecimal getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
-	public BigDecimal getProductcode() {
+	public long getProductcode() {
 		return this.productcode;
 	}
 
-	public void setProductcode(BigDecimal productcode) {
+	public void setProductcode(long productcode) {
 		this.productcode = productcode;
 	}
 

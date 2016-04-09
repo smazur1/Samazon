@@ -102,12 +102,48 @@ public class samazonservlet extends HttpServlet {
 
 		}  else if (request.getParameter("option").equals("5")) {
 			
+		
+			
 			double total = 0;
+			
+			long orderid = 0;
+			long cartid = 0;
+			long userid = 0;
+			userid = (long) session.getAttribute("userid");
+			double cartprice = 0;
+			
+			cartid = ProcessOrder.getNewCartId();
+			
+			System.out.println("cart id = " + cartid);
+			
 			for (Product product : cart) {
-				total += product.getPrice().doubleValue();
+				
+				
+				// insert cart into samazon order
+				// select max order id from samazon order   getNewOrderID
+				// select max cartid from samazon order     getNewCartID
+				
+				// get userid from session
+				// get productcode, productname, price from cart
+				// call method passing in above parameters to insert into samazonorder
+				orderid = ProcessOrder.getNewOrderId();
+				
+				System.out.println("order id = " + orderid);
+				cartprice = product.getPrice();
+				
+				ProcessOrder.insertSamazonOrder(orderid, cartid, userid, product.getProductcode(), 
+						product.getProductname(), cartprice);
+				
+				// end insert
+				
+				
+	//			total += product.getPrice().doubleValue();
+				total += product.getPrice();
+
+				
 			}
 			session.setAttribute("total", total);
-			
+			System.out.println("userid = " + session.getAttribute("userid"));
 					
 			request.getRequestDispatcher("/Confirmation.jsp").forward(request, response);
 
@@ -117,11 +153,15 @@ public class samazonservlet extends HttpServlet {
 			String password = request.getParameter("password");
             long count = 0;
             String joe = "0";
+            long userid = 0;
             
             count = ProcessUser.getUser(username, password);
 			
 			if (count == 1) {
 			
+				
+			  userid = ProcessUser.getUserId(username, password);	
+			  session.setAttribute("userid", userid);	
 			  joe = "1";
 			  session.setAttribute("joe", joe);
 			  request.getRequestDispatcher("/ShoppingCart.jsp").forward(request, response);

@@ -43,7 +43,6 @@ th {
 		</c:forEach>
 	</table>
 
-
 	<form action="samazonservlet" method="post">
 		<p>
 			<br />
@@ -52,9 +51,6 @@ th {
 			 <input type="submit" value="Go Back To List!">
 		</p>
 	</form>
-
-<c:out value="${joe }"/>
-
 	
 <c:choose>
     <c:when test="${joe.equals('1')}">
@@ -72,8 +68,7 @@ th {
 	</form>
     
   </c:when>   
-    
-
+ 
     <c:otherwise>
     
     <form action="samazonservlet" method="post">
